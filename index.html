@@ -410,6 +410,30 @@
             white-space: pre-line;
         }
 
+        .ability-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .official-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1rem;
+        
+            padding: 4px 7px;
+        
+            border-radius: 4px;
+        
+            transition: 0.2s;
+        }
+        
+        .official-link:hover {
+            background: var(--gold);
+            color: #121212;
+        }
+
         /* =========================================================
            ITEMS
         ========================================================= */
@@ -603,7 +627,7 @@
             </span>
 
             <span class="info-value">
-                1
+                9
             </span>
 
         </div>
@@ -648,18 +672,86 @@
             <div class="ability">
 
                 <h3 class="ability-name">
-                    Nombre de la habilidad
+                    Divine Sense
                 </h3>
 
                 <p class="ability-description">
-                    Escribe aquí la descripción completa
-                    de la habilidad de Paladin.
+                    The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces. Until the end of your next turn, you know the location of any celestial, fiend, or undead within 60 feet of you that is not behind total cover. You know the type (celestial, fiend, or undead) of any being whose presence you sense, but not its identity (the vampire Count Strahd von Zarovich, for instance). Within the same radius, you also detect the presence of any place or object that has been consecrated or desecrated, as with the Hallow spell.
 
-                    Puedes utilizar varias líneas.
+                    You can use this feature a number of times equal to 1 + your Charisma modifier. When you finish a long rest, you regain all expended uses.
                 </p>
 
             </div>
 
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Lay on Hands
+                </h3>
+
+                <p class="ability-description">
+                    Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin level x 5.
+
+                    As an action, you can touch a creature and draw power from the pool to restore a number of hit points to that creature, up to the maximum amount remaining in your pool.
+                    
+                    Alternatively, you can expend 5 hit points from your pool of healing to cure the target of one disease or neutralize one poison affecting it. You can cure multiple diseases and neutralize multiple poisons with a single use of Lay on Hands, expending hit points separately for each one.
+                    
+                    This feature has no effect on undead and constructs.
+                </p>
+
+            </div>
+            
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Divine Smite
+                </h3>
+
+                <p class="ability-description">
+                    Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is 2d8 for a 1st-level spell slot, plus 1d8 for each spell level higher than 1st, to a maximum of 5d8. The damage increases by 1d8 if the target is an undead or a fiend, to a maximum of 6d8.
+                </p>
+
+            </div>
+            
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Divine Health
+                </h3>
+
+                <p class="ability-description">
+                    By 3rd level, the divine magic flowing through you makes you immune to disease.
+                </p>
+
+            </div>
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Channel Divinity
+                </h3>
+
+                <p class="ability-description">
+                   Your oath allows you to channel divine energy to fuel magical effects. Each Channel Divinity option provided by your oath explains how to use it.
+
+                    When you use your Channel Divinity, you choose which option to use. You must then finish a short or long rest to use your Channel Divinity again.
+                    
+                    Some Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your paladin spell save DC.
+                </p>
+
+            </div>
+            
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Harness Divine Power (Optional)
+                </h3>
+
+                <p class="ability-description">
+                    Also at 3rd level, you can expend a use of your Channel Divinity to fuel your spells. As a bonus action, you touch your holy symbol, utter a prayer, and regain one expended spell slot, the level of which can be no higher than half your proficiency bonus (rounded up). The number of times you can use this feature is based on the level you've reached in this class: 3rd level, once; 7th level, twice; and 15th level, thrice. You regain all expended uses when you finish a long rest.
+                </p>
+
+            </div>
 
             <div class="ability">
 
@@ -673,6 +765,43 @@
 
             </div>
 
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Extra Attack
+                </h3>
+
+                <p class="ability-description">
+                    Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn.
+                </p>
+
+            </div>
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Aura of Protection
+                </h3>
+
+                <p class="ability-description">
+                    Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a minimum bonus of +1). You must be conscious to grant this bonus.
+                </p>
+
+            </div>
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Aura of Courage
+                </h3>
+
+                <p class="ability-description">
+                    Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious.
+                </p>
+
+            </div>
+            
         </div>
 
     </details>
@@ -693,25 +822,37 @@
             <div class="ability">
 
                 <h3 class="ability-name">
-                    Nombre de habilidad de subclase
+                    Channel Divinity
                 </h3>
 
                 <p class="ability-description">
-                    Escribe aquí la descripción de la
-                    habilidad de Oath of Conquest.
+                    When you take this oath at 3rd level, you gain the following two Channel Divinity options.                    
                 </p>
 
+             <ul>
+                    <li>
+                        <strong>Conquering Presence</strong>
+                        You can use your Channel Divinity to exude a terrifying presence. As an action, you force each creature of your choice that you can see within 30 feet of you to make a Wisdom saving throw. On a failed save, a creature becomes frightened of you for 1 minute. The frightened creature can repeat this saving throw at the end of each of its turns, ending the effect on itself on a success.
+                    </li>
+            
+                    <li>
+                        <strong>Guided Strike</strong>
+                        You can use your Channel Divinity to strike with supernatural accuracy. When you make an attack roll, you can use your Channel Divinity to gain a +10 bonus to the roll. You make this choice after you see the roll, but before the DM says whether the attack hits or misses
+                    </li>
+                </ul>
             </div>
 
 
             <div class="ability">
 
                 <h3 class="ability-name">
-                    Segunda habilidad
+                    Aura of Conquest
                 </h3>
 
                 <p class="ability-description">
-                    Descripción de la habilidad.
+                    Starting at 7th level, you constantly emanate a menacing aura while you're not incapacitated. The aura extends 10 feet from you in every direction, but not through total cover.
+
+                    If a creature is frightened of you, its speed is reduced to 0 while in the aura, and that creature takes psychic damage equal to half your paladin level if it starts its turn there.
                 </p>
 
             </div>
@@ -790,25 +931,27 @@
                 <div class="spell">
 
                     <div class="spell-name">
-                        Nombre del hechizo
+                        Armor of Agathys
                     </div>
 
                     <div class="spell-description">
-                        Descripción del hechizo.
+                        A protective magical force surrounds you, manifesting as a spectral frost that covers you and your gear. You gain 5 temporary hit points for the duration. If a creature hits you with a melee attack while you have these hit points, the creature takes 5 cold damage.
+
+                        <strong>At Higher Levels.</strong> When you cast this spell using a spell slot of 2nd level or higher, both the temporary hit points and the cold damage increase by 5 for each slot.
                     </div>
 
                     <div class="spell-meta">
 
                         <span>
-                            Casting Time: —
+                            Casting Time: 1 action
                         </span>
 
                         <span>
-                            Range: —
+                            Range: Self
                         </span>
 
                         <span>
-                            Duration: —
+                            Duration: 1 hour
                         </span>
 
                     </div>
@@ -819,31 +962,31 @@
                 <div class="spell">
 
                     <div class="spell-name">
-                        Segundo hechizo
+                        Command
                     </div>
 
                     <div class="spell-description">
-                        Descripción del segundo hechizo.
+                        You speak a one-word command to a creature you can see within range. The target must succeed on a Wisdom saving throw or follow the command on its next turn. The spell has no effect if the target is undead, if it doesn’t understand your language, or if your command is directly harmful to it.
                     </div>
 
                     <div class="spell-meta">
 
                         <span>
-                            Casting Time: —
+                            Casting Time: 1 action
                         </span>
 
                         <span>
-                            Range: —
+                            Range: 60 feet
                         </span>
 
                         <span>
-                            Duration: —
+                            Duration: 1 round
                         </span>
 
                     </div>
 
                 </div>
-
+                
             </div>
 
 
@@ -861,25 +1004,63 @@
                 <div class="spell">
 
                     <div class="spell-name">
-                        Nombre del hechizo
+                        Hold Person
                     </div>
 
                     <div class="spell-description">
-                        Descripción del hechizo.
+                        Choose a humanoid that you can see within range. The target must succeed on a Wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target.
+
+                        <strong>At Higher Levels</strong> When you cast this spell using a spell slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The humanoids must be within 30 feet of each other when you target them.
                     </div>
 
                     <div class="spell-meta">
 
                         <span>
-                            Casting Time: —
+                            Casting Time: 1 action
                         </span>
 
                         <span>
-                            Range: —
+                            Range: 60 feet
                         </span>
 
                         <span>
-                            Duration: —
+                            Duration: Concentration, up to 1 minute
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Spiritual Weapon
+                    </div>
+
+                    <div class="spell-description">
+                        You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again.
+
+                        When you cast the spell, you can make a melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier.
+                        
+                        As a bonus action on your turn, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it.
+                        
+                        The weapon can take whatever form you choose. Clerics of deities who are associated with a particular weapon (as St. Cuthbert is known for his mace and Thor for his hammer) make this spell’s effect resemble that weapon.
+                        
+                        At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for every two slot levels above the 2nd.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: 1 bonus action
+                        </span>
+
+                        <span>
+                            Range: 60 feet
+                        </span>
+
+                        <span>
+                            Duration: 1 minute
                         </span>
 
                     </div>
@@ -895,19 +1076,68 @@
 
             <div class="spell-level">
 
-                <h3 class="spell-level-title">
-                    Nivel 3
-                </h3>
+                <div class="spell">
 
+                    <div class="spell-name">
+                        Bestow Curse
+                    </div>
+
+                    <div class="spell-description">
+                        You touch a creature, and that creature must succeed on a Wisdom saving throw or become cursed for the duration of the spell. When you cast this spell, choose the nature of the curse from the following options:
+
+                        Choose one ability score. While cursed, the target has disadvantage on ability checks and saving throws made with that ability score.
+                        While cursed, the target has disadvantage on attack rolls against you.
+                        While cursed, the target must make a Wisdom saving throw at the start of each of its turns. If it fails, it wastes its action that turn doing nothing.
+                        While the target is cursed, your attacks and spells deal an extra 1d8 necrotic damage to the target.
+                        A remove curse spell ends this effect. At the DM's option, you may choose an alternative curse effect, but it should be no more powerful than those described above. The DM has final say on such a curse's effect.
+                        
+                        At Higher Levels. If you cast this spell using a spell slot of 4th level or higher, the duration is concentration, up to 10 minutes. If you use a spell slot of 5th level or higher, the duration is 8 hours. If you use a spell slot of 7th level or higher, the duration is 24 hours. If you use a 9th level spell slot, the spell lasts until it is dispelled. Using a spell slot of 5th level or higher grants a duration that doesn't require concentration.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: 1 action
+                        </span>
+
+                        <span>
+                            Range: Touch
+                        </span>
+
+                        <span>
+                            Duration: Concentration, up to 1 minute
+                        </span>
+
+                    </div>
+
+                </div>
 
                 <div class="spell">
 
                     <div class="spell-name">
-                        Nombre del hechizo
+                        Fear
                     </div>
 
                     <div class="spell-description">
-                        Descripción del hechizo.
+                        You project a phantasmal image of a creature’s worst fears. Each creature in a 30-foot cone must succeed on a Wisdom saving throw or drop whatever it is holding and become frightened for the duration.
+
+                        While frightened by this spell, a creature must take the Dash action and move away from you by the safest available route on each of its turns, unless there is nowhere to move. If the creature ends its turn in a location where it doesn’t have line of sight to you, the creature can make a Wisdom saving throw. On a successful save, the spell ends for that creature.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: 1 action
+                        </span>
+
+                        <span>
+                            Range: Self (30-foot cone)
+                        </span>
+
+                        <span>
+                            Duration: Concentration, up to 1 minute
+                        </span>
+
                     </div>
 
                 </div>
@@ -989,15 +1219,32 @@
                 <div class="feat">
 
                     <h3 class="feat-name">
-                        Nombre del Feat
+                        Heavy Armor Master
                     </h3>
 
+                    <a
+                        href="https://dnd5e.wikidot.com/feat:heavy-armor-master"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="official-link"
+                        title="Ver fuente"
+                    >
+                        🔗 Ver fuente
+                    </a>
+                    
                     <p class="feat-description">
-                        Descripción completa del feat.
-
-                        Incluye aquí todos los efectos,
-                        condiciones y reglas necesarias.
+                        You can use your armor to deflect strikes that would kill others. You gain the following benefits:
                     </p>
+                    <ul>
+                        <li>
+                            Increase your Strength score by 1, to a maximum of 20.
+                        </li>
+                
+                        <li>
+                            While you are wearing heavy armor, bludgeoning, piercing, and slashing damage that you take from nonmagical attacks is reduced by 3.
+                        </li>
+                    </ul>
+            </div>
 
                 </div>
 
@@ -1005,16 +1252,32 @@
                 <div class="feat">
 
                     <h3 class="feat-name">
-                        Segundo Feat
+                        Great Weapon Master
                     </h3>
-
+                    
+                    <a
+                        href="https://dnd5e.wikidot.com/feat:great-weapon-master"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="official-link"
+                        title="Ver fuente"
+                    >
+                        🔗 Ver fuente
+                    </a>
+                    
                     <p class="feat-description">
-                        Descripción del segundo feat.
+                        You've learned to put the weight of a weapon to your advantage, letting its momentum empower your strikes. You gain the following benefits:
                     </p>
-
+                    <ul>
+                        <li>
+                            On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action.
+                        </li>
+                
+                        <li>
+                            Before you make a melee attack with a heavy weapon that you are proficient with, you can choose to take a -5 penalty to the attack roll. If the attack hits, you add +10 to the attack's damage.
+                        </li>
+                    </ul>
                 </div>
-
-
             </div>
 
         </div>
@@ -1040,18 +1303,36 @@
                 <div class="item">
 
                     <div class="item-name">
-                        Espada larga
+                        Battleaxe
                     </div>
 
+                    <a
+                        href="https://dnd5e.wikidot.com/weapons"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="official-link"
+                        title="Ver fuente"
+                    >
+                        🔗 Ver fuente
+                    </a>
+                    
                     <div class="item-description">
-                        Descripción del item.
-
-                        Daño, propiedades, efectos especiales,
-                        requisitos, etc.
+                        Steel 
                     </div>
 
+                    <ul>
+                        <li>
+                            <strong>One hand</strong>
+                            1d8 slashing
+                        </li>
+                            
+                        <li>
+                            <strong>Two hands</strong>
+                            Versatile (1d10)      
+                        </li>
+                    </ul>
                 </div>
-
+            </div>
 
                 <div class="item">
 
@@ -1060,25 +1341,22 @@
                     </div>
 
                     <div class="item-description">
-                        Descripción del escudo.
+                        +2 AC
                     </div>
 
                 </div>
-
 
                 <div class="item">
 
                     <div class="item-name">
-                        Nombre del objeto mágico
+                        Javelin
                     </div>
 
                     <div class="item-description">
-                        Descripción completa del objeto.
+                        1d6 piercing, Thrown (30/120)
                     </div>
 
                 </div>
-
-
             </div>
 
         </div>
