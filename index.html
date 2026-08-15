@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ficha de Personaje D&D</title>
+
+    <style>
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+            --bg-main: #121212;
+            --bg-secondary: #1b1b1b;
+            --bg-card: #222222;
+            --bg-card-hover: #292929;
+
+            --border: #444;
+            --border-light: #555;
+
+            --gold: #c9a227;
+            --gold-light: #e0bd45;
+
+            --red: #8f2d2d;
+            --red-light: #b83b3b;
+
+            --text-main: #eeeeee;
+            --text-secondary: #bdbdbd;
+            --text-muted: #888;
+
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.45);
+
+            --radius: 8px;
+        }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #292929 0%,
+                    #121212 55%
+                );
+
+            color: var(--text-main);
+
+            min-height: 100vh;
+
+            line-height: 1.6;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =========================================================
+           CONTENEDOR PRINCIPAL
+        ========================================================= */
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+            padding: 30px 0 60px;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            color: var(--gold);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            margin-top: 5px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .header-line {
+            width: 150px;
+            height: 2px;
+            background: var(--gold);
+            margin: 15px auto 0;
+        }
+
+        /* =========================================================
+           BOTONES SUPERIORES
+        ========================================================= */
+
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .toolbar button {
+            background: var(--bg-card);
+            color: var(--gold-light);
+
+            border: 1px solid var(--border);
+
+            padding: 8px 14px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .toolbar button:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+        }
+
+        /* =========================================================
+           INFORMACIÓN DEL PERSONAJE
+        ========================================================= */
+
+        .character-info {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 15px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .info-label {
+            display: block;
+
+            color: var(--gold);
+
+            font-size: 0.8rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: var(--text-main);
+
+            font-size: 1.05rem;
+        }
+
+        /* =========================================================
+           SECCIONES DESPLEGABLES
+        ========================================================= */
+
+        details {
+            background: var(--bg-secondary);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            margin-bottom: 15px;
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+        }
+
+        details[open] {
+            border-color: #66551d;
+        }
+
+        summary {
+            list-style: none;
+
+            cursor: pointer;
+
+            padding: 18px 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #242424,
+                    #1b1b1b
+                );
+
+            color: var(--gold);
+
+            font-size: 1.3rem;
+
+            font-weight: bold;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            user-select: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "▶";
+
+            font-size: 0.8rem;
+
+            color: var(--text-secondary);
+
+            transition: transform 0.2s;
+        }
+
+        details[open] > summary::after {
+            transform: rotate(90deg);
+        }
+
+        summary:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .section-content {
+            padding: 20px;
+        }
+
+        /* =========================================================
+           HABILIDADES
+        ========================================================= */
+
+        .ability {
+            background: var(--bg-card);
+
+            border-left: 3px solid var(--gold);
+
+            padding: 15px;
+
+            margin-bottom: 12px;
+
+            border-radius: 4px;
+        }
+
+        .ability:last-child {
+            margin-bottom: 0;
+        }
+
+        .ability-name {
+            color: var(--gold-light);
+
+            font-size: 1.1rem;
+
+            margin-bottom: 6px;
+        }
+
+        .ability-description {
+            color: var(--text-secondary);
+
+            white-space: pre-line;
+        }
+
+        /* =========================================================
+           HECHIZOS
+        ========================================================= */
+
+        .spell-level {
+            margin-bottom: 20px;
+        }
+
+        .spell-level:last-child {
+            margin-bottom: 0;
+        }
+
+        .spell-level-title {
+            color: var(--gold);
+
+            border-bottom: 1px solid var(--border);
+
+            padding-bottom: 7px;
+
+            margin-bottom: 12px;
+
+            font-size: 1.15rem;
+        }
+
+        .spell {
+            background: var(--bg-card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            padding: 12px 15px;
+
+            margin-bottom: 8px;
+        }
+
+        .spell:last-child {
+            margin-bottom: 0;
+        }
+
+        .spell-name {
+            color: var(--text-main);
+
+            font-weight: bold;
+
+            font-size: 1rem;
+        }
+
+        .spell-description {
+            color: var(--text-secondary);
+
+            margin-top: 5px;
+
+            white-space: pre-line;
+        }
+
+        .spell-meta {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 8px;
+
+            color: var(--text-muted);
+
+            font-size: 0.8rem;
+        }
+
+        .spell-meta span {
+            background: #181818;
+
+            padding: 3px 7px;
+
+            border-radius: 3px;
+        }
+
+        /* =========================================================
+           FEATS
+        ========================================================= */
+
+        .feats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 12px;
+        }
+
+        .feat {
+            background: var(--bg-card);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 15px;
+        }
+
+        .feat-name {
+            color: var(--gold-light);
+
+            font-size: 1.1rem;
+
+            margin-bottom: 7px;
+        }
+
+        .feat-description {
+            color: var(--text-secondary);
+
+            white-space: pre-line;
+        }
+
+        /* =========================================================
+           ITEMS
+        ========================================================= */
+
+        .items {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .item {
+            display: grid;
+
+            grid-template-columns: 220px 1fr;
+
+            gap: 15px;
+
+            background: var(--bg-card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            padding: 13px 15px;
+        }
+
+        .item-name {
+            color: var(--gold-light);
+
+            font-weight: bold;
+        }
+
+        .item-description {
+            color: var(--text-secondary);
+
+            white-space: pre-line;
+        }
+
+        /* =========================================================
+           NOTAS
+        ========================================================= */
+
+        .notes {
+            width: 100%;
+
+            min-height: 150px;
+
+            resize: vertical;
+
+            background: #171717;
+
+            color: var(--text-main);
+
+            border: 1px solid var(--border);
+
+            border-radius: 5px;
+
+            padding: 12px;
+
+            font-family: inherit;
+
+            font-size: 0.95rem;
+        }
+
+        .notes:focus {
+            outline: none;
+
+            border-color: var(--gold);
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            text-align: center;
+
+            color: var(--text-muted);
+
+            margin-top: 30px;
+
+            font-size: 0.8rem;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            summary {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+
+            .section-content {
+                padding: 15px;
+            }
+
+            .toolbar {
+                justify-content: stretch;
+            }
+
+            .toolbar button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header>
+
+        <h1 class="title">
+            Ficha de Personaje
+        </h1>
+
+        <p class="subtitle">
+            Dungeons & Dragons
+        </p>
+
+        <div class="header-line"></div>
+
+    </header>
+
+
+    <!-- =========================================================
+         INFORMACIÓN GENERAL
+    ========================================================== -->
+
+    <section class="character-info">
+
+        <div class="info-box">
+
+            <span class="info-label">
+                Personaje
+            </span>
+
+            <span class="info-value">
+                Nombre del personaje
+            </span>
+
+        </div>
+
+        <div class="info-box">
+
+            <span class="info-label">
+                Clase
+            </span>
+
+            <span class="info-value">
+                Paladin
+            </span>
+
+        </div>
+
+        <div class="info-box">
+
+            <span class="info-label">
+                Subclase
+            </span>
+
+            <span class="info-value">
+                Oath of Conquest
+            </span>
+
+        </div>
+
+        <div class="info-box">
+
+            <span class="info-label">
+                Nivel
+            </span>
+
+            <span class="info-value">
+                1
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTROLES
+    ========================================================== -->
+
+    <div class="toolbar">
+
+        <button id="openAll">
+            Abrir todo
+        </button>
+
+        <button id="closeAll">
+            Cerrar todo
+        </button>
+
+    </div>
+
+
+    <!-- =========================================================
+         CLASE
+    ========================================================== -->
+
+    <details>
+
+        <summary>
+            🛡️ Clase — Paladin
+        </summary>
+
+        <div class="section-content">
+
+            <!--
+                DUPLICA ESTE BLOQUE PARA AGREGAR
+                MÁS HABILIDADES
+            -->
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Nombre de la habilidad
+                </h3>
+
+                <p class="ability-description">
+                    Escribe aquí la descripción completa
+                    de la habilidad de Paladin.
+
+                    Puedes utilizar varias líneas.
+                </p>
+
+            </div>
+
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Segunda habilidad
+                </h3>
+
+                <p class="ability-description">
+                    Descripción de la segunda habilidad.
+                </p>
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- =========================================================
+         SUBCLASE
+    ========================================================== -->
+
+    <details>
+
+        <summary>
+            ⚔️ Subclase — Oath of Conquest
+        </summary>
+
+        <div class="section-content">
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Nombre de habilidad de subclase
+                </h3>
+
+                <p class="ability-description">
+                    Escribe aquí la descripción de la
+                    habilidad de Oath of Conquest.
+                </p>
+
+            </div>
+
+
+            <div class="ability">
+
+                <h3 class="ability-name">
+                    Segunda habilidad
+                </h3>
+
+                <p class="ability-description">
+                    Descripción de la habilidad.
+                </p>
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- =========================================================
+         HECHIZOS
+    ========================================================== -->
+
+    <details>
+
+        <summary>
+            ✨ Lista de Hechizos
+        </summary>
+
+        <div class="section-content">
+
+
+            <!-- ===============================
+                 NIVEL 0
+            ================================= -->
+
+            <div class="spell-level">
+
+                <h3 class="spell-level-title">
+                    Cantrips / Nivel 0
+                </h3>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Nombre del hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del hechizo.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: —
+                        </span>
+
+                        <span>
+                            Range: —
+                        </span>
+
+                        <span>
+                            Duration: —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 NIVEL 1
+            ================================= -->
+
+            <div class="spell-level">
+
+                <h3 class="spell-level-title">
+                    Nivel 1
+                </h3>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Nombre del hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del hechizo.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: —
+                        </span>
+
+                        <span>
+                            Range: —
+                        </span>
+
+                        <span>
+                            Duration: —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Segundo hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del segundo hechizo.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: —
+                        </span>
+
+                        <span>
+                            Range: —
+                        </span>
+
+                        <span>
+                            Duration: —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 NIVEL 2
+            ================================= -->
+
+            <div class="spell-level">
+
+                <h3 class="spell-level-title">
+                    Nivel 2
+                </h3>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Nombre del hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del hechizo.
+                    </div>
+
+                    <div class="spell-meta">
+
+                        <span>
+                            Casting Time: —
+                        </span>
+
+                        <span>
+                            Range: —
+                        </span>
+
+                        <span>
+                            Duration: —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 NIVEL 3
+            ================================= -->
+
+            <div class="spell-level">
+
+                <h3 class="spell-level-title">
+                    Nivel 3
+                </h3>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Nombre del hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del hechizo.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 NIVEL 4
+            ================================= -->
+
+            <div class="spell-level">
+
+                <h3 class="spell-level-title">
+                    Nivel 4
+                </h3>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Nombre del hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del hechizo.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 NIVEL 5
+            ================================= -->
+
+            <div class="spell-level">
+
+                <h3 class="spell-level-title">
+                    Nivel 5
+                </h3>
+
+
+                <div class="spell">
+
+                    <div class="spell-name">
+                        Nombre del hechizo
+                    </div>
+
+                    <div class="spell-description">
+                        Descripción del hechizo.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- =========================================================
+         FEATS
+    ========================================================== -->
+
+    <details>
+
+        <summary>
+            🧠 Feats
+        </summary>
+
+        <div class="section-content">
+
+            <div class="feats-grid">
+
+
+                <div class="feat">
+
+                    <h3 class="feat-name">
+                        Nombre del Feat
+                    </h3>
+
+                    <p class="feat-description">
+                        Descripción completa del feat.
+
+                        Incluye aquí todos los efectos,
+                        condiciones y reglas necesarias.
+                    </p>
+
+                </div>
+
+
+                <div class="feat">
+
+                    <h3 class="feat-name">
+                        Segundo Feat
+                    </h3>
+
+                    <p class="feat-description">
+                        Descripción del segundo feat.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- =========================================================
+         ITEMS
+    ========================================================== -->
+
+    <details>
+
+        <summary>
+            🎒 Lista de Items
+        </summary>
+
+        <div class="section-content">
+
+            <div class="items">
+
+
+                <div class="item">
+
+                    <div class="item-name">
+                        Espada larga
+                    </div>
+
+                    <div class="item-description">
+                        Descripción del item.
+
+                        Daño, propiedades, efectos especiales,
+                        requisitos, etc.
+                    </div>
+
+                </div>
+
+
+                <div class="item">
+
+                    <div class="item-name">
+                        Escudo
+                    </div>
+
+                    <div class="item-description">
+                        Descripción del escudo.
+                    </div>
+
+                </div>
+
+
+                <div class="item">
+
+                    <div class="item-name">
+                        Nombre del objeto mágico
+                    </div>
+
+                    <div class="item-description">
+                        Descripción completa del objeto.
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </details>
+
+
+    <!-- =========================================================
+         NOTAS
+    ========================================================== -->
+
+    <details>
+
+        <summary>
+            📜 Notas del personaje
+        </summary>
+
+        <div class="section-content">
+
+            <textarea
+                class="notes"
+                placeholder="Escribe aquí cualquier nota adicional sobre tu personaje..."
+            ></textarea>
+
+        </div>
+
+    </details>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer>
+
+        Dungeons & Dragons — Character Reference
+
+    </footer>
+
+</div>
+
+
+<!-- =============================================================
+     JAVASCRIPT
+============================================================= -->
+
+<script>
+
+    const sections = document.querySelectorAll("details");
+
+    const openAllButton = document.getElementById("openAll");
+
+    const closeAllButton = document.getElementById("closeAll");
+
+
+    openAllButton.addEventListener("click", () => {
+
+        sections.forEach(section => {
+
+            section.open = true;
+
+        });
+
+    });
+
+
+    closeAllButton.addEventListener("click", () => {
+
+        sections.forEach(section => {
+
+            section.open = false;
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
