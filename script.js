@@ -29,6 +29,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const max_hp = parseInt(maxHpInput.value);
     const current_hp = parseInt(currentHpInput.value);
 
+    // Pedir contraseña por una ventana emergente
+    // guardarla en localStorage para no tener que escribirla todo el tiempo
+    let secret = localStorage.getItem("dnd_secret");
+    if (!secret) {
+      secret = prompt("Ingresa la contraseña para guardar los cambios:");
+      if (!secret) return; // Si cancela, no hace nada
+      localStorage.setItem("dnd_secret", secret); // La guarda para la sesión
+    }
+
     // Validación rápida local
     if (initiative < -5 || initiative > 20) {
       alert("La iniciativa debe estar entre -5 y 20.");
@@ -53,6 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-Api-Secret": secret // Enviamos la contraseña en los headers
         },
         body: JSON.stringify({ initiative, max_hp, current_hp }),
       });
@@ -60,18 +70,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (response.ok) {
         statusSpan.textContent = "¡Guardado con éxito!";
         statusSpan.style.color = "green";
+      } else if (response.status === 401) {
+        // Si la contraseña es incorrecta, borramos la guardada para que la vuelva a pedir
+        localStorage.removeItem("dnd_secret");
+        throw new Error("Contraseña incorrecta");
       } else {
         throw new Error("Error al guardar en el servidor");
       }
     } catch (error) {
       console.error(error);
-      statusSpan.textContent = "Error al guardar";
+      statusSpan.textContent = error.message || "Error al guardar";
       statusSpan.style.color = "red";
     } finally {
       saveBtn.disabled = false;
       setTimeout(() => {
         statusSpan.textContent = "";
-      }, 3000); // Borra el mensaje después de 3 segundos
+      }, 3000);
     }
   });
-});
