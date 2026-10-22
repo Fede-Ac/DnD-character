@@ -183,6 +183,39 @@
             font-size: 1.05rem;
         }
 
+        .character-info button {
+            background: var(--bg-card);
+            color: var(--gold-light);
+
+            border: 1px solid var(--border);
+
+            padding: 8px 14px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .character-info button:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+        }
+
+        .character-info input {
+            background: var(--bg-card);
+            color: var(--gold-light);
+
+            border: 1px solid var(--border);
+
+            padding: 8px 14px;
+
+            border-radius: 5px;
+
+            max-width: 50%;
+        }
+
         /* =========================================================
            SECCIONES DESPLEGABLES
         ========================================================= */
@@ -629,6 +662,29 @@
 
             </div>
 
+            <div class="info-box">
+                <span class="info-label">
+                    Iniciativa
+                </span>
+                <input type="number" id="initiative" min="-5" max="20" value="0">
+            </div>
+
+            <div class="info-box">
+                <span class="info-label">
+                    Vida Máxima
+                </span>
+                <input type="number" id="max-hp" min="0" value="10">
+            </div>
+
+            <div class="info-box">
+                <span class="info-label">
+                    Vida Actual
+                </span>
+                <input type="number" id="current-hp" min="0" value="10">
+            </div>
+
+            <button id="save-stats-btn" class="btn-save">Guardar Cambios</button>
+            <span id="save-status" style="margin-left: 10px; font-size: 0.9rem;"></span>
         </section>
 
 
@@ -1216,7 +1272,7 @@
                 <!-- ===============================
                  NIVEL 4
                 ================================= -->
-<!--
+                <!--
                 <div class="spell-level">
 
                     <h3 class="spell-level-title">
@@ -1242,7 +1298,7 @@
                 <!-- ===============================
                  NIVEL 5
                 ================================= -->
-<!--
+                <!--
                 <div class="spell-level">
 
                     <h3 class="spell-level-title">
@@ -1467,7 +1523,8 @@
     <!-- =============================================================
      JAVASCRIPT
     ============================================================= -->
-
+    <script src="script.js"></script>
+    
     <script>
 
         const sections = document.querySelectorAll("details");
